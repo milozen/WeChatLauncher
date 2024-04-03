@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
@@ -10,6 +11,10 @@ namespace WeChatLauncher
         public Form1()
         {
             InitializeComponent();
+
+            // 设置窗体图标
+            this.Icon = new Icon(".\\wx.ico");
+
             InitializeWeChatLauncher();
         }
 
