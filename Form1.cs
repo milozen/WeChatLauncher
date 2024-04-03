@@ -13,7 +13,7 @@ namespace WeChatLauncher
             InitializeComponent();
 
             // 设置窗体图标
-            this.Icon = new Icon(".\\wx.ico");
+            this.Icon = new Icon("wx.ico");
 
             InitializeWeChatLauncher();
         }
