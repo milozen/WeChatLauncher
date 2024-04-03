@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
@@ -13,9 +14,27 @@ namespace WeChatLauncher
             InitializeComponent();
 
             // 设置窗体图标
-            this.Icon = new Icon("wx.ico");
+            // 从嵌入的资源中设置窗体图标
+            this.Icon = LoadIconFromResources("WeChatLauncher.wx.ico");
 
             InitializeWeChatLauncher();
+        }
+
+        private Icon LoadIconFromResources(string resourceName)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            using (var stream = assembly.GetManifestResourceStream(resourceName))
+            {
+                if (stream != null)
+                {
+                    return new Icon(stream);
+                }
+                else
+                {
+                    // 如果资源找不到，返回null或默认图标
+                    return null; // 或者使用 SystemIcons.Application 等作为备选
+                }
+            }
         }
 
         private void InitializeWeChatLauncher()
